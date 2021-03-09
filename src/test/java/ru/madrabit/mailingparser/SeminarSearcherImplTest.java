@@ -7,10 +7,8 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @Slf4j
-class FindSeminarImplTest {
+class SeminarSearcherImplTest {
     String path = "";
     String name = "";
     @BeforeEach
@@ -24,8 +22,7 @@ class FindSeminarImplTest {
 
     @Test
     public void readDocFile() {
-        final FindSeminar findSeminar = new FindSeminarImpl();
-        Assert.assertTrue(findSeminar.readDocxFile(new File(path), name));
+        final SeminarSearcher seminarSearcher = new SeminarSearcherImpl();
     }
 
 }

@@ -7,8 +7,6 @@ import org.junit.jupiter.api.Test;
 import java.io.File;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class DirsCollectorTest {
 
     private String baseDir = "";
@@ -25,7 +23,7 @@ class DirsCollectorTest {
     @Test
     public void collectDirs() {
 
-        final Set<String> dirs = collector.listFilesUsingJavaIO(subDirs);
+        final Set<String> dirs = collector.getDirsList(subDirs);
         for (String dir : dirs) {
             System.out.println(collector.parseDepartmentFromDir(dir));
         }
