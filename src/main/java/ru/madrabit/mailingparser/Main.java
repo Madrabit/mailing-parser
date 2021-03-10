@@ -37,9 +37,7 @@ public class Main {
                 }
             }
         }
-
-        for (Item item : items) {
-            System.out.println(item.getName() + " : " + item.getDate() + " : " + item.getDepartments());
-        }
+        CreateExcel excel = new CreateExcel();
+        excel.createExcel(items);
     }
 }
