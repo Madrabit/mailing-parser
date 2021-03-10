@@ -2,6 +2,10 @@ package ru.madrabit.mailingparser;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FilenameUtils;
+import org.apache.poi.hwpf.HWPFDocument;
+import org.apache.poi.hwpf.model.PAPX;
+import org.apache.poi.hwpf.usermodel.*;
+import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import org.apache.poi.xwpf.usermodel.*;
 
 import java.io.*;
@@ -17,7 +21,6 @@ public class SeminarSearcherImpl implements SeminarSearcher {
     @Override
     public List<String> readDocxFile(File file) {
         List<String> names = new ArrayList<>();
-        boolean result = false;
         try (FileInputStream fis = new FileInputStream(file.getAbsolutePath())) {
             XWPFDocument document = new XWPFDocument(fis);
             List<XWPFTable> tables = document.getTables();
@@ -28,19 +31,6 @@ public class SeminarSearcherImpl implements SeminarSearcher {
                     }
                 }
             }
-
-
-//            else if (tables.size() <= 1) {
-//             List<XWPFParagraph> paragraphs = document.getParagraphs();
-//                for (XWPFParagraph para : paragraphs) {
-//                    log.info(para.getText());
-
-//                    if (para.getText().contains(name)) {
-//                        System.out.println("The match as per the Document is True");
-//                        result = true;
-//                    }
-//                }
-//            }
         } catch (Exception e) {
             log.error("Exception {}", e.getMessage());
         }
@@ -51,8 +41,7 @@ public class SeminarSearcherImpl implements SeminarSearcher {
     public Set<String> getFilesList(String dir) {
         return Stream.of(new File(dir).listFiles())
                 .filter(file -> !file.isDirectory())
-                .filter(file ->  "docx".equals(FilenameUtils.getExtension(file.getName())) ||
-                        "doc".equals(FilenameUtils.getExtension(file.getName())))
+                .filter(file -> "docx".equals(FilenameUtils.getExtension(file.getName())))
                 .map(File::getName)
                 .collect(Collectors.toSet());
     }

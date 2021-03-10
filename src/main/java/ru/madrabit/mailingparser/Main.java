@@ -19,7 +19,10 @@ public class Main {
         List<Item> items = new ArrayList<>();
 
         for (String dir : dirsList) {
-            final String date = collector.parseDirToDate(dir);
+            String date = dir;
+            if (dir.contains("-")) {
+                 date = collector.parseDirToDate(dir);
+            }
             Set<String> subDirs = collector.getDirsList(baseDir + File.separator + dir);
             for (String subDir : subDirs) {
                 final List<Integer> departments = collector.parseDepartmentFromDir(subDir);

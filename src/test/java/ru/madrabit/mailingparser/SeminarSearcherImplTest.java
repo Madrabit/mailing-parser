@@ -25,4 +25,12 @@ class SeminarSearcherImplTest {
         final SeminarSearcher seminarSearcher = new SeminarSearcherImpl();
     }
 
+    @Test
+    public void testDoc() {
+        String path = System.getProperty("user.dir")
+                + File.separator + "RE_ ВПОДК курс.doc";
+        final SeminarSearcher seminarSearcher = new SeminarSearcherImpl();
+        seminarSearcher.readDocxFile(new File(path));
+    }
+
 }
